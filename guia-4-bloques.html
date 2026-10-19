@@ -10,7 +10,7 @@
 <meta property="og:description" content="El sistema para dejar de improvisar con tu dinero, en 4 bloques. Haz el test y descubre tu siguiente paso.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --olive: #3D4A1F; --olive-2: #56652E; --sage: #76884E; --gold: #C9A84C; --gold-dark: #7E6322; --bronze: #5E4B1C;
@@ -21,7 +21,7 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
-body { background: var(--cream); color: var(--ink); font-family: "Inter", system-ui, -apple-system, sans-serif; font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
+body { background: var(--cream); color: var(--ink); font-family: "Outfit", system-ui, -apple-system, sans-serif; font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
 button, a { font: inherit; color: inherit; }
 button { cursor: pointer; border: 0; background: none; }
 :focus-visible { outline: 2.5px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
@@ -109,6 +109,12 @@ h2 { font-size: clamp(25px, 6.4vw, 34px); line-height: 1.1; font-weight: 800; le
 .warn b { color: var(--gold); }
 .cta-row { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
 .hint { font-size: 13.5px; color: var(--ink-3); text-align: center; }
+.hero-cta { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+.btn.btn-xl { min-height: 66px; padding: 0 20px; white-space: nowrap; font-size: clamp(16.5px, 4.6vw, 18.5px); font-weight: 800; letter-spacing: -0.01em; border-radius: 999px; box-shadow: 0 12px 30px -10px rgba(61,74,31,.55); }
+.btn.btn-xl svg { width: 22px; height: 22px; fill: none; transition: transform .2s ease; }
+.btn.btn-xl:hover svg { transform: translateX(4px); }
+@media (min-width: 960px) { .hero-cta { max-width: 460px; } }
+@media (max-width: 340px) { .btn.btn-xl { white-space: normal; } }
 
 /* ── test ── */
 .qmeta { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
@@ -510,6 +516,97 @@ body.locked { overflow: hidden; }
 .html2pdf__container #sheet .res-tower .blk.ahead { box-shadow: none; border: 2.5px solid #A8372B; }
 .html2pdf__container #sheet .lg-ahead { box-shadow: none; border: 2px solid #A8372B; }
 .html2pdf__container #sheet .res-tower .blk.ahead { width: 95% !important; margin: 0 auto; transform: rotate(var(--tilt)); }
+
+/* ═══════════════════════════════════════════════════════════
+   CAPA DE MARCA — igual que la web: Cormorant Garamond + Outfit,
+   oliva de la web y acentos dorados
+═══════════════════════════════════════════════════════════ */
+:root {
+  --olive: #3E5120; --olive-2: #546C2B; --olive-dark: #2C3A16; --olive-light: #ECF0DC;
+  --gold: #A8872A; --gold-mid: #C4A045; --gold-dark: #8A6D1E; --gold-light: #F6EDD5;
+  --cream: #F8F5EF; --cream-2: #F0EDE4; --paper: #FFFFFF; --line: #DDD9CE;
+  --ink: #0A0A0B; --ink-2: #4A4C3E; --ink-3: #8A8C7C;
+  --display: 'Cormorant Garamond', Georgia, serif;
+}
+body { font-family: 'Outfit', system-ui, -apple-system, sans-serif; background: var(--cream); color: var(--ink); }
+
+/* titulares en Cormorant */
+h1, h2, .detail h3, .order h3, .qtext, .sec-title, .bc-head h3, .ccard h3, .risk-card h3, .gate-card h2, .action h3, .review-title { font-family: var(--display); font-weight: 700; letter-spacing: -0.01em; color: var(--olive-dark); }
+h1, h2, h3, .qtext, .res-num, .bc-num, .brand b, .me b, .s-me-txt b { font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; }
+h1 { font-size: clamp(40px, 10vw, 60px); line-height: 1.02; }
+h1 em, h2 em { display: block; font-style: italic; font-weight: 600; color: var(--gold); }
+h2 { font-size: clamp(31px, 7.8vw, 44px); line-height: 1.05; }
+.lead { color: var(--ink-3); font-weight: 400; }
+.tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; font-size: 11.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--olive); }
+.tag::before { content: ''; width: 22px; height: 2px; border-radius: 2px; background: var(--gold); flex: 0 0 auto; }
+
+/* cabecera */
+.top { background: rgba(248,245,239,.96); }
+.brand b { font-family: var(--display); font-size: 19px; font-weight: 700; color: var(--olive); }
+.brand > span:last-child { font-size: 10.5px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.stp.on i { background: var(--gold); }
+.stp.done i { background: var(--olive); }
+.stp.on { color: var(--olive-dark); }
+
+/* botones como la web */
+.btn { font-family: 'Outfit', system-ui, sans-serif; font-weight: 600; background: var(--olive); box-shadow: 0 4px 20px rgba(62,81,32,.28); transition: transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease, box-shadow .3s ease; }
+.btn:hover { background: var(--olive-2); box-shadow: 0 8px 30px rgba(62,81,32,.38); transform: translateY(-2px); }
+.btn.ghost { background: transparent; box-shadow: inset 0 0 0 1.5px var(--line); color: var(--olive); }
+.btn.ghost:hover { background: var(--olive); color: #fff; box-shadow: none; }
+.btn.btn-xl { font-weight: 600; letter-spacing: 0; }
+.btn.btn-xl svg { color: var(--gold-mid); }
+.btn.ig, .btn.wa, .btn.wa-soft { box-shadow: none; }
+.btn.wa-soft:hover { background: #DDF2E5; }
+.link { color: var(--olive); }
+
+/* página 1: torre con el dorado arriba y tarjetas blancas con filete dorado */
+.tower:not(.res-tower) .blk[data-b="4"] { --c: var(--gold); }
+.tower.pick .blk.sel { box-shadow: 0 0 0 3px var(--cream), 0 0 0 4.5px var(--gold); }
+.detail { border: 1px solid var(--line); border-left: 3px solid var(--gold); box-shadow: 0 4px 24px rgba(62,81,32,.06); }
+.detail.main { border-left-width: 4px; }
+.detail h3 { font-size: 25px; }
+.detail.main h3 { font-size: 28px; }
+.detail .why b, .part b { color: var(--olive); }
+.chips span { background: var(--gold-light); color: var(--gold-dark); }
+.order h3 { font-size: 25px; }
+.warn { background: var(--olive-dark); }
+.warn b { color: var(--gold-mid); }
+
+/* test */
+.qtext { font-size: clamp(29px, 7.6vw, 38px); line-height: 1.1; font-weight: 600; color: var(--olive-dark); }
+.bar span { background: var(--gold); }
+.opt { font-weight: 500; }
+.opt[aria-pressed="true"] { background: #FBF8EF; box-shadow: inset 0 0 0 2px var(--olive); }
+.opt[aria-pressed="true"] .dot { background: var(--gold); }
+@media (hover: hover) { .opt:hover { box-shadow: inset 0 0 0 1.5px var(--gold-mid); } }
+
+/* resultado */
+.res-num { font-family: var(--display); font-weight: 700; font-size: 50px; }
+.res-title { font-size: clamp(30px, 7.4vw, 40px); }
+.sec-title { font-size: 26px; font-weight: 700; border-bottom: 1px solid var(--line); position: relative; }
+.sec-title::after { content: ''; position: absolute; left: 0; bottom: -1px; width: 48px; height: 2px; background: var(--gold); }
+.bc-num { font-family: var(--display); font-size: 21px; }
+.bc-head h3 { font-size: 25px; }
+.bc-label { color: var(--gold-dark); letter-spacing: .06em; text-transform: uppercase; font-size: 11.5px; }
+.risk-card h3 { font-size: 24px; color: #8C2E23; }
+.jub-card h3 { color: #6B4A10; }
+.ccard h3 { font-size: 24px; }
+.ccard { border-top: 3px solid var(--gold); }
+.me b { font-family: var(--display); font-size: 20px; color: var(--olive); }
+.me img { border-radius: 50%; border: 2.5px solid var(--olive-light); box-shadow: 0 0 0 1px var(--gold); }
+.gate-card h2 { font-size: 34px; }
+.gate-card label { color: var(--olive); }
+
+/* PDF: misma tipografía, tamaños ajustados */
+.html2pdf__container #sheet .s-head b, #sheet .s-head b { font-family: var(--display); font-size: 12pt; }
+.html2pdf__container #sheet .res-title { font-size: 18pt; }
+.html2pdf__container #sheet .sec-title { font-size: 14pt; }
+.html2pdf__container #sheet .bc-head h3 { font-size: 15pt; }
+.html2pdf__container #sheet .risk-card h3 { font-size: 14pt; }
+.html2pdf__container #sheet .res-num { font-size: 26pt; }
+.html2pdf__container #sheet .bc-num { font-size: 13pt; }
+.html2pdf__container #sheet .s-me-txt b { font-family: var(--display); font-size: 12pt; }
+.html2pdf__container #sheet .s-me img { border-radius: 50%; }
 </style>
 </head>
 <body>
@@ -704,8 +801,13 @@ function detailCard(b) {
 function page1() {
   return `<section class="screen p1">
     <div class="intro-col">
-      <h1>El sistema para dejar de improvisar con tu dinero</h1>
+      <p class="tag">El sistema de los 4 bloques</p>
+      <h1>El sistema para dejar de improvisar <em>con tu dinero</em></h1>
       <p class="lead">Cuatro bloques que se construyen de abajo arriba. Cada uno se apoya en el anterior.</p>
+      <div class="hero-cta">
+        <button class="btn btn-xl block" data-go="2">${Object.keys(S.a).length && !testDone() ? 'Seguir con el test' : testDone() ? 'Ver el test' : 'Hacer el test'}<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <p class="hint">Test de 9 preguntas · 2 minutos</p>
+      </div>
       <div class="tower-col">${tower({ pick: true, anim: firstPaint })}
         <p class="tower-cap">Toca un bloque para ver qué es.</p>
       </div>
