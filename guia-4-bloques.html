@@ -313,6 +313,9 @@ body.locked { overflow: hidden; }
 .gate-card label { display: block; margin-top: 18px; font-size: 14px; font-weight: 700; color: var(--olive); }
 .gate-card input { display: block; width: 100%; margin-top: 6px; min-height: 54px; padding: 0 16px; border: 0; border-radius: 14px; background: var(--cream); box-shadow: inset 0 0 0 1.5px var(--line); font: inherit; font-size: 17px; color: var(--ink); }
 .gate-card input:focus { outline: none; background: var(--paper); box-shadow: inset 0 0 0 2px var(--olive); }
+.ig-field { position: relative; margin-top: 6px; }
+.ig-field span { position: absolute; left: 16px; top: 50%; transform: translateY(-52%); font-size: 20px; font-weight: 600; color: var(--gold); pointer-events: none; }
+.gate-card .ig-field input { margin-top: 0; padding-left: 36px; }
 .gate-card input[aria-invalid="true"] { box-shadow: inset 0 0 0 2px #A8372B; }
 .gate-card .gate-err { color: #A8372B; font-size: 13.5px; font-weight: 600; margin-top: 6px; }
 .gate-card .btn { margin-top: 16px; }
@@ -679,7 +682,9 @@ const URLP = new URLSearchParams(location.search);
 // de dónde viene: ?utm_source=… o ?src=… en el enlace; si no, la web que le ha traído
 if (!S.orig) { let r = 'Directo'; try { r = URLP.get('utm_source') || URLP.get('src') || (document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : 'Directo'); } catch (e) {} S.orig = r.slice(0, 60); }
 const cleanName = (v) => String(v || '').replace(/[\u0000-\u001f<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 40);
-const PREFILL = cleanName(URLP.get('nombre'));
+// usuario de Instagram: admite "@usuario", "usuario" o el enlace del perfil; solo letras, números, punto y guion bajo
+const cleanIg = (v) => String(v || '').trim().replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/[/?#].*$/, '').replace(/^@+/, '').replace(/[^A-Za-z0-9._]/g, '').slice(0, 30).toLowerCase();
+const PREFILL = cleanIg(URLP.get('ig') || URLP.get('nombre'));
 const nm = () => S.name || '';
 let firstPaint = true;
 
@@ -806,7 +811,7 @@ function page1() {
       <p class="lead">Cuatro bloques que se construyen de abajo arriba. Cada uno se apoya en el anterior.</p>
       <div class="hero-cta">
         <button class="btn btn-xl block" data-go="2">${Object.keys(S.a).length && !testDone() ? 'Seguir con el test' : testDone() ? 'Ver el test' : 'Hacer el test'}<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-        <p class="hint">Test de 9 preguntas · 2 minutos</p>
+        <p class="hint">2 minutos</p>
       </div>
       <div class="tower-col">${tower({ pick: true, anim: firstPaint })}
         <p class="tower-cap">Toca un bloque para ver qué es.</p>
@@ -817,7 +822,7 @@ function page1() {
       <div class="warn"><p><b>Antes de pensar en qué invertir, mira tu liquidez.</b> El error más caro que veo es invertir con el bloque 1 a medias.</p></div>
       <div class="cta-row">
         <button class="btn block" data-go="2">${Object.keys(S.a).length && !testDone() ? 'Seguir con el test' : testDone() ? 'Ver el test' : 'Hacer el test'}</button>
-        <p class="hint">9 preguntas, 2 minutos.</p>
+        <p class="hint">2 minutos</p>
       </div>
     </div>
   </section>`;
@@ -853,12 +858,12 @@ function gate() {
   return `<div class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-t">
     <form class="gate-card" id="gate" novalidate>
       <h2 id="gate-t">Antes de empezar</h2>
-      <p>¿Cómo te llamas? Así tu resultado será solo para ti.</p>
-      <label for="gate-name">Tu nombre o tu usuario de Instagram</label>
-      <input id="gate-name" name="name" type="text" maxlength="40" autocomplete="nickname" autocapitalize="words" enterkeyhint="go" placeholder="Ej.: Laura o @laura" value="${esc(PREFILL)}" aria-describedby="gate-err">
-      <p class="gate-err" id="gate-err" role="alert" hidden>Escribe tu nombre o tu usuario para seguir.</p>
+      <p>Déjame tu Instagram y tu resultado será solo para ti.</p>
+      <label for="gate-name">Tu usuario de Instagram</label>
+      <div class="ig-field"><span aria-hidden="true">@</span><input id="gate-name" name="ig" type="text" maxlength="60" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="tu.usuario" value="${esc(PREFILL)}" aria-describedby="gate-err"></div>
+      <p class="gate-err" id="gate-err" role="alert" hidden>Escribe tu usuario de Instagram para seguir.</p>
       <button class="btn block" type="submit">Empezar el test</button>
-      <p class="gate-note">Guardo tu nombre y tus respuestas para poder ayudarte si me escribes. No los comparto con nadie.${priv}</p>
+      <p class="gate-note">Guardo tu usuario y tus respuestas para poder ayudarte si me escribes. No los comparto con nadie.${priv}</p>
       <button class="link" type="button" data-go="1">Volver a los bloques</button>
     </form>
   </div>`;
@@ -969,7 +974,7 @@ function page3() {
       <button class="btn block" data-go="4">Siguiente</button>
       <button class="btn ghost block" data-print>Descargar mi resultado en PDF</button>
       <button class="link" data-reset style="align-self:center">Repetir el test</button>
-      ${nm() ? `<button class="link" data-rename style="align-self:center;font-size:13.5px;color:var(--ink-3)">¿No eres ${esc(nm())}? Hacer el test con otro nombre</button>` : ''}
+      ${nm() ? `<button class="link" data-rename style="align-self:center;font-size:13.5px;color:var(--ink-3)">¿No eres ${esc(nm())}? Hacer el test con otro usuario</button>` : ''}
     </div>
   </section>`;
 }
@@ -1167,8 +1172,8 @@ document.addEventListener('click', (e) => {
 document.addEventListener('submit', (e) => {
   if (e.target.id !== 'gate') return;
   e.preventDefault();
-  const inp = $('#gate-name'), v = cleanName(inp.value);
-  if (v.length < 2) { inp.setAttribute('aria-invalid', 'true'); $('#gate-err').hidden = false; inp.focus(); return; }
+  const inp = $('#gate-name'), u = cleanIg(inp.value), v = u ? '@' + u : '';
+  if (u.length < 2) { inp.setAttribute('aria-invalid', 'true'); $('#gate-err').hidden = false; inp.focus(); return; }
   S.name = v; render(false);
 });
 document.addEventListener('keydown', (e) => {
