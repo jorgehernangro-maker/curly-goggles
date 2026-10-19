@@ -422,6 +422,8 @@ body.locked { overflow: hidden; }
 }
 
 /* ── PDF descargable: la misma hoja, dentro del contenedor de html2pdf ── */
+/* html2pdf centra su contenedor: en pantallas anchas la captura salía desplazada */
+.html2pdf__container { margin: 0 !important; left: 0 !important; right: auto !important; }
 .html2pdf__container #sheet { display: block !important; font-size: 11pt; background: #fff; color: var(--ink); }
 .html2pdf__container #sheet { display: block; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .html2pdf__container #sheet .s-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 3.5mm; margin-bottom: 5mm; font-size: 9pt; color: var(--ink-3); }
@@ -763,6 +765,8 @@ function gate() {
 function resultParts(d) {
   const states = {};
   for (const b of [1, 2, 3, 4]) states[b] = b <= d.level ? 'done' : b === d.next ? (d.prog[b] === 'half' ? 'next half' : 'next') : d.ahead.includes(b) ? (d.prog[b] === 'half' ? 'ahead half' : 'ahead') : 'todo';
+  // aporta para la jubilación pero no sabe cuánto necesita: cuenta, pero se marca sin base
+  if (d.jubCheck && states[2] === 'done') states[2] = 'ahead';
   return states;
 }
 const ICON_WARN = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17.5v.01"/></svg>';
@@ -849,7 +853,6 @@ function resultTop(d, states, anim) {
     <p class="lead res-sub">${subline(d)}</p>
     <h3 class="sec-title">Tu situación actual</h3>
     ${tower({ states, anim, extra: 'res-tower compact' + (d.risk ? ' risk' : '') })}
-    <div class="legend-row" aria-hidden="true">${legendRow(states)}</div>
     ${riskCard(d)}
     ${jubAlert(d, !anim)}`;
 }
@@ -988,7 +991,7 @@ function registro() {
     'Nombre / IG': nm() || '(sin nombre)',
     'Bloque': `${d.cur} · ${BLOCKS[d.cur].name}`,
     'Situación': d.level === 4 ? 'Los 4 completos' : d.prog[d.cur] === 'half' ? 'A medias' : 'Sin empezar',
-    'Sin base': d.aheadNames || '—',
+    'Sin base': [1, 2, 3, 4].filter((b) => st[b].startsWith('ahead')).map((b) => BLOCKS[b].name).join(', ') || '—',
     'Revisar jubilación': d.jubCheck ? 'Sí' : 'No'
   };
   for (const b of [1, 2, 3, 4]) fila[BLOCKS[b].name] = ST_TXT[st[b]];
