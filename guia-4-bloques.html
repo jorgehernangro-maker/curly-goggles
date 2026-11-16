@@ -8,9 +8,6 @@
 <meta name="theme-color" content="#3D4A1F">
 <meta property="og:title" content="¿En qué bloque estás?">
 <meta property="og:description" content="El sistema para dejar de improvisar con tu dinero, en 4 bloques. Haz el test y descubre tu siguiente paso.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --olive: #3D4A1F; --olive-2: #56652E; --sage: #76884E; --gold: #C9A84C; --gold-dark: #7E6322; --bronze: #5E4B1C;
@@ -21,7 +18,7 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
-body { background: var(--cream); color: var(--ink); font-family: "Outfit", system-ui, -apple-system, sans-serif; font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
+body { background: var(--cream); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", system-ui, sans-serif; font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
 button, a { font: inherit; color: inherit; }
 button { cursor: pointer; border: 0; background: none; }
 :focus-visible { outline: 2.5px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
@@ -521,7 +518,7 @@ body.locked { overflow: hidden; }
 .html2pdf__container #sheet .res-tower .blk.ahead { width: 95% !important; margin: 0 auto; transform: rotate(var(--tilt)); }
 
 /* ═══════════════════════════════════════════════════════════
-   CAPA DE MARCA — igual que la web: Cormorant Garamond + Outfit,
+   CAPA DE MARCA — igual que la web: SF Pro (fuente del sistema en no-Apple),
    oliva de la web y acentos dorados
 ═══════════════════════════════════════════════════════════ */
 :root {
@@ -529,15 +526,15 @@ body.locked { overflow: hidden; }
   --gold: #A8872A; --gold-mid: #C4A045; --gold-dark: #8A6D1E; --gold-light: #F6EDD5;
   --cream: #F8F5EF; --cream-2: #F0EDE4; --paper: #FFFFFF; --line: #DDD9CE;
   --ink: #0A0A0B; --ink-2: #4A4C3E; --ink-3: #8A8C7C;
-  --display: 'Cormorant Garamond', Georgia, serif;
+  --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
 }
-body { font-family: 'Outfit', system-ui, -apple-system, sans-serif; background: var(--cream); color: var(--ink); }
+body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", system-ui, sans-serif; background: var(--cream); color: var(--ink); }
 
-/* titulares en Cormorant */
+/* titulares en SF Pro Display */
 h1, h2, .detail h3, .order h3, .qtext, .sec-title, .bc-head h3, .ccard h3, .risk-card h3, .gate-card h2, .action h3, .review-title { font-family: var(--display); font-weight: 700; letter-spacing: -0.01em; color: var(--olive-dark); }
 h1, h2, h3, .qtext, .res-num, .bc-num, .brand b, .me b, .s-me-txt b { font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; }
 h1 { font-size: clamp(40px, 10vw, 60px); line-height: 1.02; }
-h1 em, h2 em { display: block; font-style: italic; font-weight: 600; color: var(--gold); }
+h1 em, h2 em { display: block; font-style:normal; font-weight: 600; color: var(--gold); }
 h2 { font-size: clamp(31px, 7.8vw, 44px); line-height: 1.05; }
 .lead { color: var(--ink-3); font-weight: 400; }
 .tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; font-size: 11.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--olive); }
@@ -552,7 +549,7 @@ h2 { font-size: clamp(31px, 7.8vw, 44px); line-height: 1.05; }
 .stp.on { color: var(--olive-dark); }
 
 /* botones como la web */
-.btn { font-family: 'Outfit', system-ui, sans-serif; font-weight: 600; background: var(--olive); box-shadow: 0 4px 20px rgba(62,81,32,.28); transition: transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease, box-shadow .3s ease; }
+.btn { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", system-ui, sans-serif; font-weight: 600; background: var(--olive); box-shadow: 0 4px 20px rgba(62,81,32,.28); transition: transform .3s cubic-bezier(.25,.46,.45,.94), background .3s ease, box-shadow .3s ease; }
 .btn:hover { background: var(--olive-2); box-shadow: 0 8px 30px rgba(62,81,32,.38); transform: translateY(-2px); }
 .btn.ghost { background: transparent; box-shadow: inset 0 0 0 1.5px var(--line); color: var(--olive); }
 .btn.ghost:hover { background: var(--olive); color: #fff; box-shadow: none; }
