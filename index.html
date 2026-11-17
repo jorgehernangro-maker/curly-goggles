@@ -215,6 +215,7 @@
     .reel__ph .play svg { width: 20px; height: 20px; margin-left: 3px; }
     .reel__t { position: absolute; top: 14px; right: 14px; font-size: 11.5px; font-weight: 500; letter-spacing: 0.08em; color: var(--white); background: rgba(10,10,11,0.35); border: 1px solid rgba(217,192,122,0.5); border-radius: 30px; padding: 4px 10px; }
     .reel__n { position: absolute; left: 16px; bottom: 12px; font-family: var(--font-display); font-style: italic; font-size: 30px; color: var(--gold-soft); line-height: 1; }
+    .reel__v video ~ .reel__t, .reel__v video ~ .reel__n { display: none; }
     .reel h3 { font-family: var(--font-display); font-weight: 600; font-size: 21px; line-height: 1.22; color: var(--olive-dark); text-wrap: balance; }
 
     .faq__nav { display: flex; justify-content: flex-end; margin: -14px 0 20px; }
@@ -429,31 +430,10 @@
           </div>
           <div class="track">
             <article class="card">
-              <div class="ph-img">Foto en la reunión</div>
+              <button class="ph-img ph-img--res has-img" type="button" aria-label="Ver la reunión en grande" data-full="construyendo/vivienda-completa.jpg"><img src="construyendo/vivienda.jpg" alt="Reunión por videollamada con Adrián y su pareja, planificando la compra de su vivienda" loading="lazy"></button>
               <div class="card__body">
-                <p class="card__build"><small>Lo que estamos construyendo</small>[Ej.: su colchón de 6 meses y el plan para la entrada del piso]</p>
-                <div class="who"><div class="who__av"></div><div><b>[Nombre]</b><span>Cliente del método</span></div></div>
-              </div>
-            </article>
-            <article class="card">
-              <div class="ph-img">Foto en la reunión</div>
-              <div class="card__body">
-                <p class="card__build"><small>Lo que estamos construyendo</small>[Ej.: su colchón de 6 meses y el plan para la entrada del piso]</p>
-                <div class="who"><div class="who__av"></div><div><b>[Nombre]</b><span>Cliente del método</span></div></div>
-              </div>
-            </article>
-            <article class="card">
-              <div class="ph-img">Foto en la reunión</div>
-              <div class="card__body">
-                <p class="card__build"><small>Lo que estamos construyendo</small>[Ej.: su colchón de 6 meses y el plan para la entrada del piso]</p>
-                <div class="who"><div class="who__av"></div><div><b>[Nombre]</b><span>Cliente del método</span></div></div>
-              </div>
-            </article>
-            <article class="card">
-              <div class="ph-img">Foto en la reunión</div>
-              <div class="card__body">
-                <p class="card__build"><small>Lo que estamos construyendo</small>[Ej.: su colchón de 6 meses y el plan para la entrada del piso]</p>
-                <div class="who"><div class="who__av"></div><div><b>[Nombre]</b><span>Cliente del método</span></div></div>
+                <p class="card__build"><small>Lo que estamos construyendo</small>La compra de su vivienda: cuánto necesitan para la entrada y los gastos, y una cuota que no pase del 35 % de sus ingresos.</p>
+                <div class="who"><div class="who__av who__av--ini">A</div><div><b>Adrián y su pareja</b><span>Comprar su vivienda</span></div></div>
               </div>
             </article>
           </div>
@@ -498,15 +478,15 @@
         <!-- En cada .reel__v: pega el vídeo (iframe o <video>) y borra el bloque "reel__ph" -->
         <div class="track track--reels">
           <article class="reel">
-            <div class="reel__v"><div class="reel__ph"><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div></div><span class="reel__t">45 s</span><span class="reel__n">01</span></div>
+            <div class="reel__v"><video controls playsinline preload="none" poster="objeciones/objecion-1.jpg"><source src="objeciones/objecion-1.mp4" type="video/mp4"></video><span class="reel__t">39 s</span><span class="reel__n">01</span></div>
             <h3>¿De qué cobras? ¿Me vas a vender algo?</h3>
           </article>
           <article class="reel">
-            <div class="reel__v"><div class="reel__ph"><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div></div><span class="reel__t">45 s</span><span class="reel__n">02</span></div>
+            <div class="reel__v"><video controls playsinline preload="none" poster="objeciones/objecion-2.jpg"><source src="objeciones/objecion-2.mp4" type="video/mp4"></video><span class="reel__t">50 s</span><span class="reel__n">02</span></div>
             <h3>¿Merece la pena pagar por esto?</h3>
           </article>
           <article class="reel">
-            <div class="reel__v"><div class="reel__ph"><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div></div><span class="reel__t">45 s</span><span class="reel__n">03</span></div>
+            <div class="reel__v"><video controls playsinline preload="none" poster="objeciones/objecion-3.jpg"><source src="objeciones/objecion-3.mp4" type="video/mp4"></video><span class="reel__t">57 s</span><span class="reel__n">03</span></div>
             <h3>¿No lo puedo aprender gratis o usar un roboadvisor?</h3>
           </article>
           <article class="reel">
@@ -514,11 +494,11 @@
             <h3>¿Es para mí si tengo menos de 5.000 € ahorrados?</h3>
           </article>
           <article class="reel">
-            <div class="reel__v"><div class="reel__ph"><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div></div><span class="reel__t">45 s</span><span class="reel__n">05</span></div>
+            <div class="reel__v"><video controls playsinline preload="none" poster="objeciones/objecion-5.jpg"><source src="objeciones/objecion-5.mp4" type="video/mp4"></video><span class="reel__t">48 s</span><span class="reel__n">05</span></div>
             <h3>¿No es mejor esperar a ganar más?</h3>
           </article>
           <article class="reel">
-            <div class="reel__v"><div class="reel__ph"><div class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></div></div><span class="reel__t">45 s</span><span class="reel__n">06</span></div>
+            <div class="reel__v"><video controls playsinline preload="none" poster="objeciones/objecion-6.jpg"><source src="objeciones/objecion-6.mp4" type="video/mp4"></video><span class="reel__t">52 s</span><span class="reel__n">06</span></div>
             <h3>¿Cómo sé que no eres un vendehumos?</h3>
           </article>
           <article class="reel">
@@ -590,6 +570,11 @@
       window.addEventListener('resize', update);
       update();
     });
+    // objeciones: un vídeo a la vez
+    (function () {
+      var vs = document.querySelectorAll(".reel__v video");
+      vs.forEach(function (v) { v.addEventListener("play", function () { vs.forEach(function (o) { if (o !== v) o.pause(); }); }); });
+    })();
     // conversaciones: abrir en grande
     (function () {
       var z = document.querySelector('.zoom'), zi = z.querySelector('img');
